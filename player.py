@@ -23,7 +23,7 @@ class HumanP(Player):
         valid_sqr = False
         val = None
         while not valid_sqr:
-            sqr = input(self.letter + '\'s turn. Input move (0-9)')
+            sqr = input(self.letter + '\'s turn. Input move (0-9): ')
             try:
                 val = int(sqr)
                 if val not in game.available_moves():
@@ -31,3 +31,4 @@ class HumanP(Player):
                 valid_sqr = True
             except ValueError:
                 print('Invalid input, please try agin')
+        return val
