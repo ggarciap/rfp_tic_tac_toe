@@ -32,11 +32,25 @@ class TicTacToe:
         ''''
         if self.board[square] == ' ':
             self.board[square] = letter
+            if self.winner(square, letter):
+                self.current_winner = letter
             return True
         else:
             return False
-        
+    def winner(self, square, letter):
+        # Checking rows
+        row_ind = squre//3
+        row = self.board[row_ind*3 : (row_ind + 1) *3]
+        if all([spot == letter for spot in row]):
+            return True
+        # Checking cols
+        col_ind = squre%3
+        col = self.board[]
 def play(game, x_p, o_player, print_game=True):
+    '''
+        The game will return a winner, but if there's
+        no winner the game will just return None
+    '''
     if print_game:
         game.print_board_nums()
 
@@ -52,7 +66,16 @@ def play(game, x_p, o_player, print_game=True):
         if game.make_move(square, letter):
             if print_game:
                 print(f'{letter} makes a move to square {square}')
-                game.print_board_nums()
+                game.print_board()
+                print('')
+            # if we have a winner 
+            if game.current_winner:
+                if print_game:
+                    print(f'{letter} IS THE WINNER!!! ')
+            # After making move alternate letters
+            letter = 'O' if letter == 'X' else 'X'
         
+        if print_game:
+            print('It\'s a tie!')
             
 
